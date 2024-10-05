@@ -4,6 +4,8 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
+    "report" : "npx playwright show-report",
+    "codegen" : "npx playwright codegen",
     "wait-page": "npx playwright test --grep @wait"
   },
   "keywords": [],

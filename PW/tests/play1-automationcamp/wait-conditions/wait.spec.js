@@ -10,7 +10,7 @@ test.beforeAll(async ({ browser }) => {
   page = await context.newPage();
   page.on('dialog', (alert) => {
     alert.type()
-  })
+  });
 
   waitPage = new WaitPage(page);
 
@@ -30,4 +30,9 @@ test('@wait wait for element to be visible', async () => {
 test('@wait wait for element to be invisible', async () => {
   await waitPage.waitTriggerInvisible();
 });
+
+test('@wait wait for element to be enabled', async () => {
+  await waitPage.waitEnabled();
+});
+
 

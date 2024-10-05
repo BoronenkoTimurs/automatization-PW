@@ -16,6 +16,7 @@ export class WaitPage extends BasePage {
     await showAlertBtn.click();
 
     await expect(showAlertBtn).toBeVisible();
+    // TODO: Maybe fix expect data to toBe()
     await expect(alertHandledSpan).toHaveText(alertHandledText);
   };
 
@@ -42,6 +43,7 @@ export class WaitPage extends BasePage {
     await promptBtn.click();
 
     await expect(promptBtn).toBeVisible();
+    // TODO: Maybe fix expect data to toBe()
     await expect(confirmRes).toHaveText(confirmResText);
   };
 
@@ -49,8 +51,8 @@ export class WaitPage extends BasePage {
     const triggerBtn = this.page.locator('#visibility_trigger');
     const clickMeBtn = this.page.locator('#visibility_target');
 
-    const dataContentText = 'I just removed my invisibility cloak!!';
-    const dataContent = await clickMeBtn.getAttribute('data-content');
+    const actualDataContent = 'I just removed my invisibility cloak!!';
+    const receivedDataContent = await clickMeBtn.getAttribute('data-content');
 
     await triggerBtn.click();
 
@@ -58,7 +60,7 @@ export class WaitPage extends BasePage {
 
     await clickMeBtn.click();
 
-    expect(dataContent).toBe(dataContentText);
+    expect(actualDataContent).toBe(receivedDataContent);
   };
 
   async waitTriggerInvisible() {
@@ -66,8 +68,8 @@ export class WaitPage extends BasePage {
     const spinner = this.page.locator('#invisibility_target');
     const spinnerGone = this.page.locator('#spinner_gone');
 
-    const spinnerGoneTextExpected = 'Thank God that spinner is gone!';
-    const spinnerGoneTextReceived = await spinnerGone.textContent(spinnerGone);
+    const actualspinnerGoneText = 'Thank God that spinner is gone!';
+    const receivedSpinnerGoneText = await spinnerGone.textContent(spinnerGone);
 
     await expect(spinner).toBeVisible();
     
@@ -75,6 +77,26 @@ export class WaitPage extends BasePage {
     
     await expect(spinner).not.toBeVisible();
 
-    expect(spinnerGoneTextExpected).toBe(spinnerGoneTextReceived);
+    expect(actualspinnerGoneText).toBe(receivedSpinnerGoneText);
+  };
+
+  async waitEnabled() {
+    const disabledBtnText = 'Disabled Button';
+    const enabledBtnText = 'Enabled Button';
+
+    const triggerBtn = this.page.locator('#enabled_trigger');
+    const disabledBtn = this.page.getByRole('button', { name: disabledBtnText });
+    const enabledBtn = this.page.getByRole('button', { name: enabledBtnText });
+
+    await expect(disabledBtn).toBeVisible();
+    
+    await triggerBtn.click();
+    
+    await expect(enabledBtn).toBeEnabled();
+
+    const actualDataContent = 'See, you just clicked me!!';
+    const receivedDataContent = await enabledBtn.getAttribute('data-content');
+    
+    expect(actualDataContent).toBe(receivedDataContent);
   };
 };
