@@ -1,8 +1,11 @@
 {
   "name": "pw",
   "version": "1.0.0",
+  "type": "module",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "wait-page": "npx playwright test --grep @wait"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
