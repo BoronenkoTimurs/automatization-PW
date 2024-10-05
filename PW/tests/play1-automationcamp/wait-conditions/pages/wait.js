@@ -21,6 +21,13 @@ export class WaitPage extends BasePage {
 
   async waitPrompt() {
     this.page.once('dialog', async (prompt) => {
+      const promptTextExpected = "Choose wisely... It's your life!";
+
+      let promptTextReceived = await prompt.message();
+      promptTextReceived = promptTextReceived.replace(/\s+/g, ' ').trim();
+
+      expect(promptTextReceived).toBe(promptTextExpected)
+      
       prompt.type() === 'confirm' 
         ? await prompt.accept() 
         : await prompt.dismiss()
@@ -34,8 +41,40 @@ export class WaitPage extends BasePage {
 
     await promptBtn.click();
 
-    // TODO: Check text in prompt
     await expect(promptBtn).toBeVisible();
     await expect(confirmRes).toHaveText(confirmResText);
+  };
+
+  async waitTriggerVisible() {
+    const triggerBtn = this.page.locator('#visibility_trigger');
+    const clickMeBtn = this.page.locator('#visibility_target');
+
+    const dataContentText = 'I just removed my invisibility cloak!!';
+    const dataContent = await clickMeBtn.getAttribute('data-content');
+
+    await triggerBtn.click();
+
+    await expect(clickMeBtn).toBeVisible();
+
+    await clickMeBtn.click();
+
+    expect(dataContent).toBe(dataContentText);
+  };
+
+  async waitTriggerInvisible() {
+    const triggerBtn = this.page.locator('#invisibility_trigger');
+    const spinner = this.page.locator('#invisibility_target');
+    const spinnerGone = this.page.locator('#spinner_gone');
+
+    const spinnerGoneTextExpected = 'Thank God that spinner is gone!';
+    const spinnerGoneTextReceived = await spinnerGone.textContent(spinnerGone);
+
+    await expect(spinner).toBeVisible();
+    
+    await triggerBtn.click();
+    
+    await expect(spinner).not.toBeVisible();
+
+    expect(spinnerGoneTextExpected).toBe(spinnerGoneTextReceived);
   };
 };

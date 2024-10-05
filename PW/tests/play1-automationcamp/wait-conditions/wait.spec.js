@@ -23,3 +23,11 @@ test('@wait wait for alert to be present', async () => {
   await waitPage.waitPrompt();
 });
 
+test('@wait wait for element to be visible', async () => {
+  await waitPage.waitTriggerVisible();
+});
+
+test('@wait wait for element to be invisible', async () => {
+  await waitPage.waitTriggerInvisible();
+});
+
