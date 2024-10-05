@@ -35,4 +35,13 @@ test('@wait wait for element to be enabled', async () => {
   await waitPage.waitEnabled();
 });
 
+test('@wait wait for text/value to have specific values', async () => {
+  await waitPage.waitSpecificValues();
+});
+
+test.only('@wait wait for frame to be available and then switch to it', async () => {
+  await waitPage.waitFrame();
+});
+
+
 

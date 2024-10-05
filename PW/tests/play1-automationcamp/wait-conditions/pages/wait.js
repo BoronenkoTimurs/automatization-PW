@@ -99,4 +99,27 @@ export class WaitPage extends BasePage {
     
     expect(actualDataContent).toBe(receivedDataContent);
   };
+
+  async waitSpecificValues() {
+    const triggerBtn = this.page.locator('#text_value_trigger');
+    const inputField = this.page.locator('#wait_for_value');
+    
+    await triggerBtn.click();
+
+    // Ineract with Shadow DOM as well
+    await expect(inputField).toHaveValue('Dennis Ritchie');
+  };
+
+  async waitFrame() {
+    const frame = this.page.frameLocator('#frm');
+    const trigerBtn = this.page.locator('#wait_for_frame');
+    
+    const innerFrameBtn = frame.locator('#inner_button');
+
+    await trigerBtn.click();
+
+    await innerFrameBtn.click();
+
+    await expect(innerFrameBtn).toHaveText('Clicked');
+  };
 };
