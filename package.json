@@ -6,7 +6,9 @@
   "scripts": {
     "report" : "npx playwright show-report",
     "codegen" : "npx playwright codegen",
-    "wait-page": "npx playwright test --grep @wait"
+    "regression" : "npx playwright test",
+    "wait-page": "npx playwright test --grep @wait",
+    "keyboard-page": "npx playwright test --grep @keyboard"
   },
   "keywords": [],
   "author": "",

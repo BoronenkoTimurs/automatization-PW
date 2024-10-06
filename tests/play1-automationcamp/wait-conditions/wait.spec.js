@@ -1,16 +1,13 @@
 import { WaitPage } from './pages/wait';
 import { test } from '@playwright/test';
 
-let waitPage;
 let page;
+let waitPage;
 
 test.beforeAll(async ({ browser }) => {
   const context = await browser.newContext();
 
   page = await context.newPage();
-  page.on('dialog', (alert) => {
-    alert.type()
-  });
 
   waitPage = new WaitPage(page);
 
