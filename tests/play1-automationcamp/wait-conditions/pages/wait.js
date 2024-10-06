@@ -2,6 +2,10 @@ import { expect } from '@playwright/test';
 import { BasePage } from '../../pages/base';
 
 export class WaitPage extends BasePage {
+  constructor(page) {
+    super(page);
+  };
+  
   async waitAlert() {
     this.page.once('dialog', async (alert) => {      
       await alert.accept();

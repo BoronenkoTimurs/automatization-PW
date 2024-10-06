@@ -8,7 +8,8 @@
     "codegen" : "npx playwright codegen",
     "regression" : "npx playwright test",
     "wait-page": "npx playwright test --grep @wait",
-    "keyboard-page": "npx playwright test --grep @keyboard"
+    "keyboard-page": "npx playwright test --grep @keyboard",
+    "mouse-page": "npx playwright test --grep @mouse"
   },
   "keywords": [],
   "author": "",
