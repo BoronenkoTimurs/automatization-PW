@@ -17,3 +17,11 @@ test.beforeAll(async ({ browser }) => {
 test('@forms basic form controls', async () => {
   await formsPage.fillForm();
 });
+
+test('@forms form with validation', async () => {
+  await formsPage.formValidation();
+});
+
+test('@forms non-eglish labels and locators ', async () => {
+  await formsPage.handleNonEnglish();
+});

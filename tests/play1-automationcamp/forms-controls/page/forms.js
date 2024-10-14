@@ -77,9 +77,41 @@ export class FormsPage extends BasePage{
 
     await uploadMultiFile.setInputFiles(uploadMultiFilePaths);
 
+    // TODO: Flaky part
     await downloadBtn.click();
 
     const download = await downloadPromise;
     expect(await download.suggestedFilename()).toBe('sample_text.txt');
+  };
+
+  async formValidation() { 
+    const cityField = await this.page.getByPlaceholder('City');
+    const stateField = await this.page.getByPlaceholder('State');
+    const zipField = await this.page.getByPlaceholder('Zip');
+    const checkBox = await this.page.getByText('Agree to terms and conditions');
+    const submitBtn = await this.page.getByRole('button', { name: 'Submit Form'});
+
+    await cityField.fill('Riga');
+    await stateField.fill('State');
+    await zipField.fill('LV-1012');
+    await checkBox.check();
+    await submitBtn.click();
+
+    await this.page.waitForLoadState('load');
+  };
+
+  async handleNonEnglish() {
+    const textField = await this.page.getByLabel('आपले नांव लिहा');
+    const textFieldValidation = await this.page.locator('#नाव_तपासा');
+    const checkBox = await this.page.getByLabel('मराठी');
+    const checkBoxValidation = await this.page.locator('#check_validate_non_english');
+
+    const text = 'Hello, World!';
+
+    await textField.pressSequentially(text);
+    await expect(textFieldValidation).toHaveText(text);
+
+    await checkBox.click();
+    await expect(checkBoxValidation).toHaveText('मराठी');
   };
 };
