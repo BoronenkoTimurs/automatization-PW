@@ -11,7 +11,8 @@
     "keyboard-page": "npx playwright test --grep @keyboard",
     "mouse-page": "npx playwright test --grep @mouse",
     "popup-page": "npx playwright test --grep @popup",
-    "frames-page": "npx playwright test --grep @frames"
+    "frames-page": "npx playwright test --grep @frames",
+    "forms-page": "npx playwright test --grep @forms"
   },
   "keywords": [],
   "author": "",
