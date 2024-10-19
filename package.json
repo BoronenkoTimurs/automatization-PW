@@ -4,9 +4,9 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "report" : "npx playwright show-report",
-    "codegen" : "npx playwright codegen",
-    "regression" : "npx playwright test",
+    "report": "npx playwright show-report",
+    "codegen": "npx playwright codegen",
+    "regression": "npx playwright test",
     "wait-page": "npx playwright test --grep @wait",
     "keyboard-page": "npx playwright test --grep @keyboard",
     "mouse-page": "npx playwright test --grep @mouse",
