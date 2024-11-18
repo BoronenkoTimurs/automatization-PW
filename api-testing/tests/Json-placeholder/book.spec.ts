@@ -1,5 +1,5 @@
 import test, { APIRequestContext, request } from "@playwright/test";
-import { JsonPlaceholderApi } from "../../steps/jsonplaceholderapi";
+import { JsonPlaceholderApi } from "../../steps/jsonPlaceholderApi";
 
 let apiConext: APIRequestContext;
 
