@@ -2,7 +2,12 @@
   "name": "api-testing",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "npx playwright test",
+    "github": "npx playwright test --grep github",
+    "jsonplaceholder": "npx playwright test --grep jsonplaceholder",
+    "book": "npx playwright test --grep book"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -10,5 +15,8 @@
   "devDependencies": {
     "@playwright/test": "^1.48.2",
     "@types/node": "^22.9.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5"
   }
 }
